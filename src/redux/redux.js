@@ -3,7 +3,8 @@ import { createStore } from "redux";
 const initialState = {
   allMovies: [],
   selected: [],
-  allExceptSelected: []
+  allExceptSelected: [],
+  recommendation: []
 };
 
 export const setAllMovies = movies => {
@@ -39,6 +40,13 @@ export const deleteSelected = title => {
   };
 };
 
+export const addRecommendatio = movies => {
+  return {
+    type: "ADD_REC",
+    movies
+  };
+};
+
 const reducer = (state = initialState, action) => {
   // eslint-disable-next-line default-case
   switch (action.type) {
@@ -63,6 +71,9 @@ const reducer = (state = initialState, action) => {
         movie.title === action.movie ? (detail = movie) : null
       );
       return { ...state, selected: [...state.selected, detail] };
+    }
+    case "ADD_REC" : {
+      return{...state, recommendation: [...action.movies]}
     }
   }
   return state;

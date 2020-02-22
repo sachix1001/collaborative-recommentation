@@ -6,8 +6,6 @@ import axios from "axios";
 import Movies from "./Movies";
 import Input from "./Input";
 import dummy from "./dummyData.js";
-import {ger} from './recommendation.js'
-console.log(ger)
 
 // import ratings from "../data/ratings.json";
 
@@ -39,32 +37,6 @@ function App() {
       dispatch(setAllExceptSelected(movies));
     });
   }, [dispatch]);
-  // useEffect(() => {
-
-
-  
-  //   const esm = new g.MemESM();
-  //   const ger = new g.GER(esm);
-  //   ger.initialize_namespace("movies");
-
-  //   axios.get("/api/ratings").then(res => {
-  //     res.data.map(rating => {
-  //       ger.events([
-  //         {
-  //           namespace: "movies",
-  //           person: rating.userId,
-  //           action: Math.floor(rating.rating),
-  //           thing: rating.mobieId,
-  //           expires_at: "2030-06-06"
-  //         }
-  //       ]);
-  //     });
-  //   });
-  //   const recom = ger.recommendations_for_person("movies", "2", {
-  //     actions: { 5: 5, 4: 3, 3: 1 }
-  //   });
-  //   console.log(recom)
-  // });
 
   return (
     <div className="App">

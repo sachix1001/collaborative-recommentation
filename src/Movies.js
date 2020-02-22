@@ -10,6 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CardMedia from "@material-ui/core/CardMedia";
 import Card from "@material-ui/core/Card";
 
+
 function Movies() {
   const allMovies = useSelector(state => state.allMovies);
   const selected = useSelector(state => state.selected);
@@ -21,7 +22,14 @@ function Movies() {
   });
 
   function movieSelected(movie) {
-    dispatch(selectMovie(movie));
+    const userInfo = {
+                namespace: "movies",
+                person: 'newUser',
+                action: 5,
+                thing: movie.id,
+                expires_at: "2030-06-06"
+              }
+    dispatch(selectMovie(userInfo));
     const exceptSelected = allMovies.filter(elem => elem.id !== movie.id);
     dispatch(setAllExceptSelected(exceptSelected));
   }
@@ -29,32 +37,14 @@ function Movies() {
   // create recommendation
   useEffect(() => {
     if (selected.length !== 0) {
-      const filtered = allMovies.map(movie => {
-        return { id: movie.id, content: movie.content };
-      });
-      // Create combined info of all selected movies
-      let combinedContent = "";
-      selected.forEach(movie => {
-        combinedContent = combinedContent.concat(movie.content);
-      });
+axios.post("api/ratings",)
 
-      const favorite = {
-        id: 0,
-        content: combinedContent
-      };
-      filtered.push(favorite);
-
-      // train
-      recommender.train(filtered);
-
-      //get top 10 similar items favorite
-      const similarDocuments = recommender.getSimilarDocuments(0, 0, 3000);
       // order exceptedList
       const orderedMovies = [];
-      similarDocuments.forEach(ranking => {
-        const pick = allMovies.find(movie => movie.id === ranking.id);
-        orderedMovies.push(pick);
-      });
+      // recommendations.forEach(ranking => {
+      //   const pick = allMovies.find(movie => movie.id === ranking.id);
+      //   orderedMovies.push(pick);
+      // });
 
       dispatch(setAllExceptSelected(orderedMovies));
     }
