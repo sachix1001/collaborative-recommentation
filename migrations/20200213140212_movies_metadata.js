@@ -32,6 +32,13 @@ exports.up = function(knex) {
     table.text('poster')
     table.text("keywords");
   })
+  .createTable("ratings", table => {
+    table.increments('id').primary()
+    table.text("userId").notNullable()
+    table.text("movieId");
+    table.float('rating')
+    table.text('timestamp')
+  })
 
 
 };
@@ -39,6 +46,7 @@ exports.up = function(knex) {
 exports.down = function(knex, Promise) {
   return knex.schema
   .dropTable("movies")
+  .dropTable("ratings")
   // .dropTable("keywords")
   // .dropTable("poster");
 };

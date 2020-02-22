@@ -27,6 +27,16 @@ app.get("/api/moviedata", async (req, res) => {
     res.sendStatus(500);
   }
 });
+app.get("/api/ratings", async (req, res) => {
+  try {
+    const ratings = await db.select()
+    .from("ratings")
+    res.json(ratings);
+  } catch (err) {
+    console.error("Error loading locations!", err);
+    res.sendStatus(500);
+  }
+});
 
 // Always return the main index.html, so react-router render the route in the client
 app.get("*", (req, res) => {
