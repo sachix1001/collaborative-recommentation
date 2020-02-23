@@ -40,7 +40,7 @@ export const deleteSelected = title => {
   };
 };
 
-export const addRecommendatio = movies => {
+export const addRecommendation = movies => {
   return {
     type: "ADD_REC",
     movies
@@ -61,14 +61,22 @@ const reducer = (state = initialState, action) => {
     }
     case "DELETE_SELECTED": {
       const removed = [...state.selected].filter(movie => {
-        return movie.id !== action.title.id;
+        return movie.title !== action.title.title;
       });
       return { ...state, selected: removed };
     }
     case "SELECT_BY_TITLE": {
-      let detail = "";
+      let detail = {
+        namespace: "movies",
+        person: "newUser",
+        action: 'likes',
+        thing: null,
+        expires_at: "2030-06-06",
+        title : action.movie
+      };
+      console.log('redux movieID', action.movie)
       state.allMovies.map(movie =>
-        movie.title === action.movie ? (detail = movie) : null
+        movie.title === action.movie ? (detail.thing = movie.movie_id) : null
       );
       return { ...state, selected: [...state.selected, detail] };
     }

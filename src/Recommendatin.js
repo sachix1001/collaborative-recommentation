@@ -3,52 +3,26 @@ import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { selectMovie, setAllExceptSelected, addRecommendation } from "./redux/redux";
 import Box from "@material-ui/core/Box";
-// import Popover from "@material-ui/core/Popover";
-// import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import CardMedia from "@material-ui/core/CardMedia";
 import Card from "@material-ui/core/Card";
-import axios from 'axios'
 
-function Movies() {
+function Recommendation() {
   const allMovies = useSelector(state => state.allMovies);
-  const selected = useSelector(state => state.selected);
-  const allExceptSelected = useSelector(state => state.allExceptSelected);
-  const dispatch = useDispatch();
   const recommendation = useSelector(state => state.recommendation);
+  const dispatch = useDispatch();
 
   function movieSelected(movie) {
-    console.log("TCL: movieSelected -> movie", movie)
     const userInfo = {
       namespace: "movies",
       person: "newUser",
       action: 'likes',
-      thing: String(movie.id),
+      thing: String(movie.movie_id),
       expires_at: "2030-06-06",
       title: movie.title
     };
-    console.log("userInfo",userInfo)
     dispatch(selectMovie(userInfo));
   }
-
-  // create recommendation
-  useEffect(() => {
-    if (selected.length !== 0) {
-      axios.post("http://localhost:9000/api/ratings", selected)
-      .then(res => {
-        let recommendation = res.data
-        const orderedMovies = [];
-        // order exceptedList
-        recommendation.forEach(ranking => {
-          const pick = allMovies.find(movie => {
-            return movie.id == ranking});
-          orderedMovies.push(pick);
-          
-          dispatch(addRecommendation(orderedMovies));
-        });
-      })
-    }
-  }, [selected, allMovies]);
 
   const useStyles = makeStyles(theme => ({
     popover: {
@@ -63,7 +37,7 @@ function Movies() {
 
   return (
     <div style={{ width: "100%" }}>
-      {recommendation.length !==0 ? <h5>More movies...</h5>: null}
+        {recommendation.length !==0 ? <h5>You might like...</h5>: null}
       <Box
         display="flex"
         flexWrap="wrap"
@@ -73,7 +47,7 @@ function Movies() {
         // bgcolor="background.paper"
         // css={{ maxWidth: 100% }}
       >
-        {allMovies.map((movie, i) => {
+        {recommendation.map((movie, i) => {
           return (
             <Box p={0} bgcolor="grey.900" className="movie-card" key={movie.id}>
               <Card>
@@ -95,4 +69,4 @@ function Movies() {
   );
 }
 
-export default Movies;
+export default Recommendation;

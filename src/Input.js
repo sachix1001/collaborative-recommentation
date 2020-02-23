@@ -67,16 +67,9 @@ export default function CustomizedInputBase() {
             />
           )}
         />
-        {/* <IconButton
-          type="button"
-          className={classes.iconButton}
-          aria-label="search"
-        >
-          <Divider className={classes.divider} orientation="vertical" />
-          <SearchIcon />
-        </IconButton> */}
       </Paper>
       <div>
+        {selected.length !== 0? <h5>Movies you like</h5> : null}
         {selected.map(movie => (
           <Button
             variant="contained"

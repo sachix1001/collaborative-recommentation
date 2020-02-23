@@ -1,10 +1,13 @@
 let allData = require("../data/allData.json");
 let ratings = require("../data/ratings.json");
 const _ = require('lodash')
+ratings = ratings.map(rating => rating.movieId)
+ratings = Array.from(new Set(ratings))
 
 allData = _.uniqBy(allData, 'movie_id'); 
 allData = allData
 .filter(data => data.popularity > 8 && data.popularity < 10)
+.filter(data => ratings.includes(String(data.movie_id)))
   .map(data => {
     return {
       movie_id: data.movie_id,
@@ -17,7 +20,6 @@ allData = allData
       keywords: data.keywords
     };
   });
-
 
 
 exports.seed = function(knex) {

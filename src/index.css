@@ -17,3 +17,8 @@ code {
 .movie-img{
   width: 100px
 }
+
+h5{
+  margin: 6px 20px;
+  text-align: left;
+}

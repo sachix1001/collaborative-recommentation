@@ -4,6 +4,7 @@ import { setAllMovies, setAllExceptSelected } from "./redux/redux";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Movies from "./Movies";
+import Recommendation from "./Recommendatin";
 import Input from "./Input";
 import dummy from "./dummyData.js";
 
@@ -24,10 +25,12 @@ function App() {
   dispatch(setAllExceptSelected(dummyWithContent));
 
   useEffect(() => {
-    axios.get("/api/moviedata").then(res => {
+    axios.get("http://localhost:9000/api/moviedata").then(res => {
       const movies = res.data.map(movie => {
+        console.log("TCL: App -> movie", movie.movie_id)
+        
         return {
-          id: movie.id,
+          id: movie.movie_id,
           content: movie.genres.concat(movie.overview, movie.keywords),
           poster: movie.poster,
           title: movie.title
@@ -45,7 +48,9 @@ function App() {
       </nav>
       <Input />
       <div className="wrapper">
-        <Movies></Movies>
+        
+        <Recommendation/>
+        <Movies/>
       </div>
     </div>
   );
