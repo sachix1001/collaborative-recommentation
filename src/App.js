@@ -27,7 +27,6 @@ function App() {
   useEffect(() => {
     axios.get("http://localhost:9000/api/moviedata").then(res => {
       const movies = res.data.map(movie => {
-        console.log("TCL: App -> movie", movie.movie_id)
         
         return {
           id: movie.movie_id,
