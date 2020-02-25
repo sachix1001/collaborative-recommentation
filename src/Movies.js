@@ -38,7 +38,7 @@ function Movies() {
   // create recommendation
   useEffect(() => {
     if (selected.length !== 0) {
-      axios.post("http://localhost:9000/api/ratings", selected).then(res => {
+      axios.post("/api/ratings", selected).then(res => {
       console.log("TCL: Movies -> selected", selected)
         let recommendation = res.data;
         console.log("TCL: Movies -> recommendation", recommendation);

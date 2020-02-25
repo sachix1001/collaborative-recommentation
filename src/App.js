@@ -27,7 +27,7 @@ function App() {
   // dispatch(setAllExceptSelected(dummyWithContent));
 
   useEffect(() => {
-    axios.get("http://localhost:9000/api/moviedata").then(res => {
+    axios.get("/api/moviedata").then(res => {
       const movies = res.data.map(movie => {
         
         return {
