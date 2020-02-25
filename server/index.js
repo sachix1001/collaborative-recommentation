@@ -8,8 +8,8 @@ const PORT = process.env.PORT || 9000;
     console.log("Running migrations...");
     await db.migrate.latest();
 
-    // console.log("Seeding the database...")
-    // await db.seed.run();
+    console.log("Seeding the database...")
+    await db.seed.run();
     
     console.log("Starting express...");
     app.listen(PORT, () => {
