@@ -1,14 +1,18 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
-import { selectMovie, setAllExceptSelected, addRecommendation } from "./redux/redux";
+import {
+  selectMovie,
+  setAllExceptSelected,
+  addRecommendation
+} from "./redux/redux";
 import Box from "@material-ui/core/Box";
 // import Popover from "@material-ui/core/Popover";
 // import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import CardMedia from "@material-ui/core/CardMedia";
 import Card from "@material-ui/core/Card";
-import axios from 'axios'
+import axios from "axios";
 
 function Movies() {
   const allMovies = useSelector(state => state.allMovies);
@@ -18,35 +22,40 @@ function Movies() {
   const recommendation = useSelector(state => state.recommendation);
 
   function movieSelected(movie) {
-    console.log("TCL: movieSelected -> movie", movie)
+    console.log("TCL: movieSelected -> movie", movie);
     const userInfo = {
       namespace: "movies",
       person: "newUser",
-      action: 'likes',
+      action: "likes",
       thing: String(movie.id),
       expires_at: "2030-06-06",
       title: movie.title
     };
-    console.log("userInfo",userInfo)
+    console.log("userInfo", userInfo);
     dispatch(selectMovie(userInfo));
   }
 
   // create recommendation
   useEffect(() => {
     if (selected.length !== 0) {
-      axios.post("http://localhost:9000/api/ratings", selected)
-      .then(res => {
-        let recommendation = res.data
+      axios.post("http://localhost:9000/api/ratings", selected).then(res => {
+      console.log("TCL: Movies -> selected", selected)
+        let recommendation = res.data;
+        console.log("TCL: Movies -> recommendation", recommendation);
         const orderedMovies = [];
         // order exceptedList
         recommendation.forEach(ranking => {
           const pick = allMovies.find(movie => {
-            return movie.id == ranking});
-          orderedMovies.push(pick);
+            return movie.id == ranking;
+          });
+          console.log("TCL: Movies -> pick", pick)
           
+          orderedMovies.push(pick);
+
+          console.log("TCL: Movies -> orderedMovies", orderedMovies);
           dispatch(addRecommendation(orderedMovies));
         });
-      })
+      });
     }
   }, [selected, allMovies]);
 
@@ -60,22 +69,23 @@ function Movies() {
   }));
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-
   return (
     <div style={{ width: "100%" }}>
-      {recommendation.length !==0 ? <h5>More movies...</h5>: null}
+      {recommendation.length !== 0 ? <h5>More movies...</h5> : null}
       <Box
         display="flex"
         flexWrap="wrap"
         p={1}
-        m={0}
+        pl={5}
+        ml={5}
+        mr={5}
         t={10}
-        // bgcolor="background.paper"
-        // css={{ maxWidth: 100% }}
+        bgcolor="background.paper"
+        css={{ maxWidth: "100%" }}
       >
         {allMovies.map((movie, i) => {
           return (
-            <Box p={0} bgcolor="grey.900" className="movie-card" key={movie.id}>
+            <Box p={1} m={0} bgcolor="grey.900" className="movie-card" key={movie.id}>
               <Card>
                 <CardMedia
                   component="img"

@@ -74,10 +74,9 @@ const reducer = (state = initialState, action) => {
         expires_at: "2030-06-06",
         title : action.movie
       };
-      console.log('redux movieID', action.movie)
       state.allMovies.map(movie =>
-        movie.title === action.movie ? (detail.thing = movie.movie_id) : null
-      );
+        movie.title.includes(action.movie) ? (detail.thing = movie.id):null
+        );
       return { ...state, selected: [...state.selected, detail] };
     }
     case "ADD_REC" : {

@@ -12,17 +12,19 @@ import dummy from "./dummyData.js";
 
 function App() {
   const dispatch = useDispatch();
-
-  const dummyWithContent = dummy.dummy.map(movie => {
-    return {
-      id: movie.id,
-      content: movie.genres.concat(movie.overview, movie.keywords),
-      poster: movie.poster,
-      title: movie.title
-    };
-  });
-  dispatch(setAllMovies(dummyWithContent));
-  dispatch(setAllExceptSelected(dummyWithContent));
+  const selected = useSelector(state => state.selected);
+  
+  // const dummyWithContent = dummy.dummy.map(movie => {
+  //   return {
+  //     id: movie.id,
+  //     content: movie.genres.concat(movie.overview, movie.keywords),
+  //     poster: movie.poster,
+  //     title: movie.title
+  //   };
+  // });
+  // console.log("TCL: App -> selected", selected)
+  // dispatch(setAllMovies(dummyWithContent));
+  // dispatch(setAllExceptSelected(dummyWithContent));
 
   useEffect(() => {
     axios.get("http://localhost:9000/api/moviedata").then(res => {
@@ -35,6 +37,7 @@ function App() {
           title: movie.title
         };
       });
+      
       dispatch(setAllMovies(movies));
       dispatch(setAllExceptSelected(movies));
     });

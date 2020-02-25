@@ -39,8 +39,8 @@ export default function CustomizedInputBase() {
       dis(title)
     }
   }
-  function dis(movie){
-    dispatch(selectMovieByTitle(movie));
+  function dis(title){
+    dispatch(selectMovieByTitle(title));
 
   }
 
