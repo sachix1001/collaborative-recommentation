@@ -18,6 +18,7 @@
 // })
 
 let ratings = require('./ratings.json')
+console.log(ratings.length)
 ratings = ratings.map(rating => rating.movieId)
 ratings = Array.from(new Set(ratings))
 console.log(ratings.includes("79"))

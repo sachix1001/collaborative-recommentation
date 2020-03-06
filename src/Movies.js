@@ -17,12 +17,10 @@ import axios from "axios";
 function Movies() {
   const allMovies = useSelector(state => state.allMovies);
   const selected = useSelector(state => state.selected);
-  const allExceptSelected = useSelector(state => state.allExceptSelected);
   const dispatch = useDispatch();
   const recommendation = useSelector(state => state.recommendation);
 
   function movieSelected(movie) {
-    console.log("TCL: movieSelected -> movie", movie);
     const userInfo = {
       namespace: "movies",
       person: "newUser",
@@ -31,7 +29,6 @@ function Movies() {
       expires_at: "2030-06-06",
       title: movie.title
     };
-    console.log("userInfo", userInfo);
     dispatch(selectMovie(userInfo));
   }
 
@@ -48,26 +45,15 @@ function Movies() {
           const pick = allMovies.find(movie => {
             return movie.id == ranking;
           });
-          console.log("TCL: Movies -> pick", pick)
           
           orderedMovies.push(pick);
 
-          console.log("TCL: Movies -> orderedMovies", orderedMovies);
           dispatch(addRecommendation(orderedMovies));
         });
       });
     }
   }, [selected, allMovies]);
 
-  const useStyles = makeStyles(theme => ({
-    popover: {
-      pointerEvents: "none"
-    },
-    paper: {
-      padding: theme.spacing(1)
-    }
-  }));
-  const [anchorEl, setAnchorEl] = React.useState(null);
 
   return (
     <div style={{ width: "100%" }}>
