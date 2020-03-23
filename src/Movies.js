@@ -7,8 +7,6 @@ import {
   addRecommendation
 } from "./redux/redux";
 import Box from "@material-ui/core/Box";
-// import Popover from "@material-ui/core/Popover";
-// import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import CardMedia from "@material-ui/core/CardMedia";
 import Card from "@material-ui/core/Card";
