@@ -9,7 +9,7 @@ This was created for my tech talk demo. The talk was about recommendation engine
 You can watch my talk [here](https://youtu.be/GukZa2_SxSE?t=7265)
  
 ## Screenshots
-
+<img src="https://github.com/sachix1001/Movie-collaborative-recommentation/blob/master/Screen%20Shot%202020-04-07%20at%208.07.00%20am.png" alt="logo" width="100" />
 
 ## Tech/framework used
 Build with
