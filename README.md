@@ -1,48 +1,25 @@
 ## Movie recommendation
 Movie recommendation website using collaborative recommendation system.
+Click or search movies you like and it desplays recommendations based on your preference.
+
+You can check demo [HERE](https://calm-crag-84259.herokuapp.com/)
 
 ## Motivation
 This was created for my tech talk demo. The talk was about recommendation engine.
-You can watch the talk [here](https://youtu.be/GukZa2_SxSE?t=7265)
+You can watch my talk [here](https://youtu.be/GukZa2_SxSE?t=7265)
  
 ## Screenshots
-Include logo/demo screenshot etc.
+
 
 ## Tech/framework used
-Ex. -
+Build with
 
-<b>Built with</b>
-- [here](https://youtu.be/GukZa2_SxSE?t=7265)
+- React
+- [MATERIAL-UI](https://material-ui.com/)
+- [Good Enough Recommendations (GER)](https://www.npmjs.com/package/ger)
 
-## Features
-What makes your project stand out?
+Resource
+- Movie data (https://www.kaggle.com/rounakbanik/the-movies-dataset)
+- Movie posters (https://www.kaggle.com/neha1703/movie-genre-from-its-poster)
 
-## Code Example
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
 
-## Installation
-Provide step by step series of examples and explanations about how to get a development env running.
-
-## API Reference
-
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
-
-## Tests
-Describe and show how to run the tests with code examples.
-
-## How to use?
-If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
-
-## Contribute
-
-Let people know how they can contribute into your project. A [contributing guideline](https://github.com/zulip/zulip-electron/blob/master/CONTRIBUTING.md) will be a big plus.
-
-## Credits
-Give proper credits. This could be a link to any repo which inspired you to build this project, any blogposts or links to people who contrbuted in this project. 
-
-#### Anything else that seems useful
-
-## License
-A short snippet describing the license (MIT, Apache etc)
-
-MIT © [Yourname]()
